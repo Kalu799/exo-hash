@@ -7,32 +7,7 @@ const $newNoteForm = document.querySelector('#newNote-form')
 
 let savedData = ''
 
-const notreListe = [
-  {
-    name: "ui",
-    note: "note1",
-    date: ""
-  },
-  {
-    name: "ui",
-    note: "note2",
-    date: ""
-  },
-  {
-    name: "ui",
-    note: "note3",
-    date: ""
-  },
-  {
-    name: "ui",
-    note: "note4",
-    date: ""
-  },
-  {
-    name: "ui",
-    note: "note5",
-    date: ""
-  },
+let notreListe = [
 ]
 
 // FCT
@@ -57,6 +32,8 @@ const AddNote = (event) => {
   affichageNotes()
   //console.log(notreListe)
   //console.log("not")
+
+  Sync()
 }
 
 //Delete
@@ -74,6 +51,8 @@ notreListe.splice(indexasupp, 1)
 
 affichageNotes()
 console.log(notreListe)
+
+Sync()
 
 }
 
