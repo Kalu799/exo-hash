@@ -3,39 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>note</title>
+  <meta name="theme-color" content="#6d28d9">
+  <title>Mes notes</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <script src="main.js" defer></script>
-  <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="flex min-h-screen flex-col bg-slate-50 font-sans text-slate-800 antialiased">
 
-  <header class="header">
-    <h1>Notre app</h1>
+  <header class="header bg-gradient-to-br from-violet-700 via-violet-700 to-indigo-800 px-6 py-12 text-center text-white shadow-lg shadow-violet-200/60 sm:py-16">
+    <p class="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-violet-200">Carnet personnel</p>
+    <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl">Mes notes</h1>
+    <p class="mx-auto mt-4 max-w-lg text-base leading-7 text-violet-100 sm:text-lg">Rassemble tes idées et retrouve-les facilement.</p>
   </header>
 
-  <main class="main">
+  <main class="main mx-auto grid w-full max-w-6xl flex-1 grid-cols-1 items-start gap-6 px-4 py-8 sm:px-6 sm:py-12 lg:grid-cols-[1.2fr_0.8fr]">
 
-    <div>
+    <div class="min-w-0 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+      <div class="mb-6">
+        <h2 class="text-xl font-bold tracking-tight text-slate-900">Tes notes</h2>
+        <p class="mt-1 text-sm text-slate-500">Tes idées enregistrées apparaîtront ici.</p>
+      </div>
       <ul id="note_wrapper"></ul>
     </div>
 
-    <div class="form-wrapper">
-      <form action="" id="newNote-form">
-        <label for="name">Nom : </label>
-        <input type="text" name="name" required>
-        <br>
-        <br>
-        <label for="note">Note : </label>
-        <input type="text" name="note" required>
-        <br>
-        <br>
-        <button type="submit">Ajouter</button>
+    <div class="form-wrapper rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+      <div class="mb-6">
+        <h2 class="text-xl font-bold tracking-tight text-slate-900">Nouvelle note</h2>
+        <p class="mt-1 text-sm text-slate-500">Ajoute une idée à ton carnet.</p>
+      </div>
+      <form action="" id="newNote-form" class="flex flex-col gap-2">
+        <label for="name" class="mt-2 text-sm font-semibold text-slate-700">Nom</label>
+        <input type="text" name="name" required class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-violet-500 focus:ring-4 focus:ring-violet-100">
+        <label for="note" class="mt-4 text-sm font-semibold text-slate-700">Note</label>
+        <input type="text" name="note" required class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-violet-500 focus:ring-4 focus:ring-violet-100">
+        <button type="submit" class="mt-5 inline-flex w-full items-center justify-center rounded-lg bg-violet-700 px-4 py-3 font-semibold text-white shadow-sm transition hover:bg-violet-800 focus:outline-none focus:ring-4 focus:ring-violet-200 active:scale-[0.99]">Ajouter la note</button>
       </form>
     </div>
 
   </main>
 
-  <footer class="footer">footer</footer>
+  <footer class="footer px-6 py-5 text-center text-sm text-slate-500">Tes notes sont enregistrées sur cet appareil.</footer>
 
 </body>
 </html>

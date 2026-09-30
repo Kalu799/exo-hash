@@ -16,8 +16,11 @@ const affichageNotes = () => {
   $noteWrapper.innerHTML = ``
   Object.values(notreListe).map((item, key) => {
     $noteWrapper.innerHTML +=
-      `
-    <li id="${key}">${item.note} <button class="noteDelete" data-key="${key}">🗑️</button></li>
+    `
+    <li id="${key}" class="flex items-center justify-between gap-4 border-b border-slate-100 py-4 text-slate-700 last:border-b-0">
+      <span class="min-w-0 break-words">${item.note}</span>
+      <button class="noteDelete inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-rose-50 text-lg transition hover:bg-rose-100 focus:outline-none focus:ring-4 focus:ring-rose-100" data-key="${key}" aria-label="Supprimer cette note">🗑️</button>
+    </li>
       `
   });
 };
@@ -75,9 +78,11 @@ const AddToHash = () => {
   const hash = encodeURIComponent(data.data)
   console.log("lien codé : ", hash)
 
-  const decodedHash = decodeURIComponent(hash)
-  const newData = JSON.parse(decodedHash)
-  console.log(newData)
+  location.hash = hash
+
+  // const decodedHash = decodeURIComponent(hash)
+  // const newData = JSON.parse(decodedHash)
+  // console.log(newData)
 }
 
 // eventListener
@@ -89,14 +94,18 @@ $noteWrapper.addEventListener('click', deleteNote)
 
 const Init = () => {
 
+  if (location.hash) {
+    const hash = location.hash
+    const decodedHash = decodeURIComponent(hash)
+    notreListe = JSON.parse(decodedHash)
+  }
+
   // Charge localStorage
-  if (localStorage.savedData) {
+  else if (localStorage.savedData) {
     notreListe = JSON.parse(localStorage.savedData) || [];
   };
 
   affichageNotes();
-
-  AddToHash()
 }
 
 Init()
