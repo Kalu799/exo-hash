@@ -99,7 +99,8 @@ const Init = () => {
   if (location.hash) {
     const hash = location.hash
     const decodedHash = decodeURIComponent(hash)
-    notreListe = JSON.parse(decodedHash)
+    let treatedhash = decodedHash.replace("#", "")
+    notreListe = JSON.parse(treatedhash)
     location.hash = ""
   }
 
