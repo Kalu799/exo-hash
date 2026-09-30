@@ -2,6 +2,7 @@
 
 const $noteWrapper = document.querySelector('#note_wrapper')
 const $newNoteForm = document.querySelector('#newNote-form')
+const $share_btn = document.querySelector('#share_btn')
 
 // VAR / CONST
 
@@ -76,7 +77,7 @@ const AddToHash = () => {
 
   data.data = JSON.stringify(notreListe)
   const hash = encodeURIComponent(data.data)
-  console.log("lien codé : ", hash)
+  //console.log("lien codé : ", hash)
 
   location.hash = hash
 
@@ -89,6 +90,7 @@ const AddToHash = () => {
 
 $newNoteForm.addEventListener('submit', AddNote)
 $noteWrapper.addEventListener('click', deleteNote)
+$share_btn.addEventListener('click', AddToHash)
 
 // INIT
 
@@ -98,6 +100,7 @@ const Init = () => {
     const hash = location.hash
     const decodedHash = decodeURIComponent(hash)
     notreListe = JSON.parse(decodedHash)
+    location.hash = ""
   }
 
   // Charge localStorage
