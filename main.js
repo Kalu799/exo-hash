@@ -40,7 +40,7 @@ const affichageNotes = () => {
   Object.values(notreListe).map((item, key) => {
     $noteWrapper.innerHTML +=
       `
-    <li id="${key}">${item.note}</li>
+    <li id="${key}">${item.note} <button class="noteDelete" data-key="${key}">🗑️</button></li>
       `
   });
 };
@@ -53,12 +53,32 @@ const AddNote = (event) => {
   notreListe.push(data);
 
   affichageNotes()
+  console.log(notreListe)
   //console.log("not")
+}
+
+//Delete
+
+const deleteNote = (e) => {
+  
+  if (!e.target.classList.contains("noteDelete")) {
+    return
+  }
+  if(!confirm("delete ?")) return
+
+let indexasupp = e.target.dataset.key
+
+notreListe.splice(indexasupp, 1)
+
+affichageNotes()
+console.log(notreListe)
+
 }
 
 // eventListener
 
 $newNoteForm.addEventListener('submit', AddNote)
+$noteWrapper.addEventListener('click', deleteNote)
 
 // INIT
 
