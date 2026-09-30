@@ -5,6 +5,8 @@ const $newNoteForm = document.querySelector('#newNote-form')
 
 // VAR / CONST
 
+let savedData = ''
+
 const notreListe = [
   {
     name: "ui",
@@ -49,11 +51,11 @@ const AddNote = (event) => {
   event.preventDefault();
 
   let pushForm = new FormData($newNoteForm);
-   data = Object.fromEntries(pushForm.entries());
+  data = Object.fromEntries(pushForm.entries());
   notreListe.push(data);
 
   affichageNotes()
-  console.log(notreListe)
+  //console.log(notreListe)
   //console.log("not")
 }
 
@@ -75,6 +77,18 @@ console.log(notreListe)
 
 }
 
+const Sync = () => {
+  savedData = notreListe
+
+  // Save dans local storage
+  localStorage.savedData = JSON.stringify(savedData);
+
+  // Supp si vide
+  if (JSON.parse(localStorage.savedData).length == 0) {
+    localStorage.removeItem("savedData");
+  };
+};
+
 // eventListener
 
 $newNoteForm.addEventListener('submit', AddNote)
@@ -83,6 +97,12 @@ $noteWrapper.addEventListener('click', deleteNote)
 // INIT
 
 const Init = () => {
+
+  // Charge localStorage
+  if (localStorage.savedData) {
+    notreListe = JSON.parse(localStorage.savedData) || [];
+  };
+
   affichageNotes();
 }
 
