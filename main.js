@@ -68,6 +68,18 @@ const Sync = () => {
   };
 };
 
+const AddToHash = () => {
+  const data = {data: ""}
+
+  data.data = JSON.stringify(notreListe)
+  const hash = encodeURIComponent(data.data)
+  console.log("lien codé : ", hash)
+
+  const decodedHash = decodeURIComponent(hash)
+  const newData = JSON.parse(decodedHash)
+  console.log(newData)
+}
+
 // eventListener
 
 $newNoteForm.addEventListener('submit', AddNote)
@@ -83,6 +95,8 @@ const Init = () => {
   };
 
   affichageNotes();
+
+  AddToHash()
 }
 
 Init()
